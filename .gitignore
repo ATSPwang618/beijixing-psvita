@@ -12,3 +12,8 @@ builddir
 *.suprx
 libromfs-generator
 !.github/
+
+# Android JNI symlinks
+android-project/app/jni/SDL
+android-project/app/jni/borealis
+android-project/app/jni/libromfs-generator
