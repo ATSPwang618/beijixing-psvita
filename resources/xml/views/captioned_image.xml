@@ -1,9 +1,43 @@
+<!-- 
+    带标题图片组件XML布局文件 (captioned_image.xml)
+    
+    这个文件定义了CaptionedImage组件的界面布局
+    创建了一个简单但优雅的图片展示组件：图片在上，标题在下
+    
+    组件结构：
+    1. 外层Box容器 - 垂直排列子元素
+    2. Image组件 - 显示图片，可以获得焦点
+    3. Label组件 - 显示标题文字，居中对齐
+    
+    这就像是制作一个相框：
+    - Box是相框的外框
+    - Image是照片本身
+    - Label是照片下方的说明文字
+    
+    当用户选中图片时，标题会显示；移开焦点时，标题会隐藏
+    这种效果是在C++代码中实现的
+-->
+
+<!-- 
+    主容器 - 垂直排列的盒子
+    axis="column" 表示子元素从上到下垂直排列
+    alignItems="center" 表示子元素在水平方向上居中对齐
+    就像是把照片和文字垂直叠放，并且都居中摆放
+-->
 <brls:Box
     width="auto"
     height="auto"
     axis="column"
     alignItems="center">
 
+    <!-- 
+        图片组件
+        id="image" 给这个组件起了个名字，C++代码可以通过这个名字找到它
+        focusable="true" 表示这个图片可以被选中（获得焦点）
+        marginBottom="20px" 在图片下方留出20像素的空间
+        
+        这就像是相框里的照片，可以被手电筒照亮（获得焦点）
+    -->
     <brls:Image
         id="image"
         width="auto"
@@ -11,6 +45,15 @@
         focusable="true"
         marginBottom="20px" />
 
+    <!-- 
+        文字标签组件
+        id="label" 给标签起名字，C++代码可以操作它
+        horizontalAlign="center" 文字水平居中对齐
+        textColor="@theme/captioned_image/caption" 使用主题中定义的颜色
+        
+        这就像是照片下方的说明文字，告诉大家这张照片是什么
+        一开始是隐藏的，只有选中图片时才会显示
+    -->
     <brls:Label
         id="label"
         width="auto"
