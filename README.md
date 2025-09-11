@@ -55,7 +55,7 @@ vita-makepkg --version
 
 ```bash
 # 进入项目目录
-cd beijixin-psvita
+cd beijixing-psvita
 
 # 创建构建目录
 mkdir -p build_psv && cd build_psv
