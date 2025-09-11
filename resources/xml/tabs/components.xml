@@ -1,12 +1,54 @@
+<!-- 
+    组件展示标签页XML布局文件 (components.xml)
+    
+    这个文件是一个完整的UI组件展示厅，包含了Borealis框架的各种组件示例
+    就像是一个互动博物馆，每个区域展示不同类型的UI组件
+    
+    主要展示区域：
+    1. 欢迎区域 - 程序介绍
+    2. HScroll - 水平滚动图片展示
+    3. 按钮区域 - 各种按钮样式和功能
+    4. 滑条区域 - 可拖动的数值调节组件
+    5. 下拉菜单区域 - 选择器组件展示
+    
+    布局结构：
+    - 外层Box：整个页面的容器
+    - ScrollingFrame：可滚动的内容区域（支持垂直滚动）
+    - 内层Box：实际内容容器，设置了适当的内边距
+    
+    每个组件都有详细的配置，展示了如何：
+    - 设置组件属性
+    - 响应用户交互
+    - 连接C++代码中的事件处理
+    
+    这就像是一本活的教科书，通过实际可操作的示例来学习UI编程
+-->
+
+<!-- 
+    主容器 - 整个组件展示页面的根容器
+    使用自动宽高，让内容决定页面大小
+-->
 <brls:Box
     width="auto"
     height="auto">
 
+    <!-- 
+        可滚动框架 - 让页面内容可以上下滚动
+        当内容超出屏幕高度时，用户可以滚动查看所有内容
+        grow="1.0" 表示这个组件会尽可能占满可用空间
+        就像是一个可以上下移动的窗口，查看长长的展示内容
+    -->
     <brls:ScrollingFrame
         width="auto"
         height="auto"
         grow="1.0" >
 
+        <!-- 
+            内容容器 - 实际放置所有展示内容的盒子
+            axis="column" 表示内容从上到下垂直排列
+            padding* 属性设置内边距，让内容不会紧贴边缘
+            就像是给展示品周围留出适当的空间，看起来更舒服
+        -->
         <brls:Box
             width="auto"
             height="auto"
@@ -16,28 +58,51 @@
             paddingTop="@style/brls/tab_frame/content_padding_top_bottom"
             paddingBottom="@style/brls/tab_frame/content_padding_top_bottom">
 
+                <!-- 
+                    欢迎标签 - 页面顶部的介绍文字
+                    text属性引用了国际化字符串，支持多语言
+                    marginBottom 在文字下方留出空间
+                -->
                 <brls:Label
                     width="auto"
                     height="auto"
                     text="@i18n/demo/welcome"
                     marginBottom="10px" />
 
-                <!-- HScroll -->
+                <!-- 
+                    ======================
+                    水平滚动展示区域 (HScroll)
+                    ======================
+                    这个区域展示了水平滚动的图片组件
+                    用户可以左右滑动查看不同的图片
+                -->
                 <brls:Header
                     width="auto"
                     height="auto"
                     title="HScroll"
                     marginBottom="30px" />
 
+                <!-- 
+                    水平滚动框架 - 可以左右滑动的容器
+                    height="240" 设置固定高度
+                    内部包含多个CaptionedImage组件（带标题的图片）
+                -->
                 <brls:HScrollingFrame
                     width="auto"
                     height="240"
                     grow="1.0">
 
+                    <!-- 
+                        水平排列的图片容器
+                        axis="row" 表示子元素从左到右水平排列
+                        每个CaptionedImage都是我们之前定义的自定义组件
+                    -->
                     <brls:Box
                         width="auto"
                         height="auto"
                         axis="row">
+                        
+                        <!-- 第一张展示图片 - 原始图片 -->
                         <CaptionedImage
                             width="auto"
                             height="auto"
@@ -46,6 +111,8 @@
                             image="@res/img/tiles.png"
                             caption="@i18n/demo/components/images_original"
                             paddingRight="6" />
+                            
+                        <!-- 第二张展示图片 - 不同缩放类型的图片 -->
                         <CaptionedImage
                             width="auto"
                             height="auto"
