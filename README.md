@@ -8,7 +8,15 @@
 
 ## 快速开始
 
+
+vitasdk准备：
+
+链   接：https://www.123865.com/s/eAc0jv-4P9AA?pwd=1122
+提取码：1122
+
 ### 1. 解压并安装 VitaSDK
+
+vitasdk：
 
 ```bash
 # 解压 VitaSDK
@@ -38,7 +46,7 @@ vita-makepkg --version
 
 ```bash
 # 进入项目目录
-cd borealis_template
+cd beijixing-psvita
 
 # 初始化子模块
 git submodule update --init --recursive
@@ -99,8 +107,3 @@ vdpm libpng
 - `resources/` - 资源文件（字体、图片等）
 - `build_psv/` - PSV 构建输出目录
 
-## 更多信息
-
-来自123云盘VIP会员的分享：psv开发
-链   接：https://www.123865.com/s/eAc0jv-4P9AA?pwd=1122
-提取码：1122
