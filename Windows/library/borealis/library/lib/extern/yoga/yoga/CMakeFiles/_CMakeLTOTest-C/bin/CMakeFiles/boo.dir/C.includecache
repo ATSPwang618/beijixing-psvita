@@ -1,0 +1,10 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/workspaces/music-player-test/build_windows/library/borealis/library/lib/extern/yoga/yoga/CMakeFiles/_CMakeLTOTest-C/src/main.c
+

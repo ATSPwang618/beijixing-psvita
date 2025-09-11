@@ -1,0 +1,2 @@
+/usr/bin/x86_64-w64-mingw32-ar qc libtinyxml2.a CMakeFiles/tinyxml2.dir/lib/extern/tinyxml2/tinyxml2.cpp.obj
+/usr/bin/x86_64-w64-mingw32-ranlib libtinyxml2.a

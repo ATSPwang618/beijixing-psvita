@@ -1,0 +1,4 @@
+/workspaces/music-player-test/build_windows/library/borealis/library/lib/extern/yoga/yoga/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
+/workspaces/music-player-test/build_windows/library/borealis/library/lib/extern/yoga/yoga/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
+/workspaces/music-player-test/build_windows/library/borealis/library/lib/extern/yoga/yoga/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
+/workspaces/music-player-test/build_windows/library/borealis/library/lib/extern/yoga/yoga/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir

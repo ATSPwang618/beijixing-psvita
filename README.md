@@ -106,11 +106,115 @@ vdpm zlib
 vdpm libpng
 ```
 
+## Windows 64位应用构建指南
+
+### 环境要求
+
+- Ubuntu 20.04 LTS 或更高版本 (推荐使用WSL2或Linux虚拟机)
+- MinGW-w64 交叉编译工具链
+- CMake 3.16 或更高版本
+- 至少 1GB 可用磁盘空间
+
+### 1. 安装MinGW-w64工具链
+
+```bash
+# 更新包列表
+sudo apt-get update
+
+# 安装MinGW-w64工具链
+sudo apt-get install -y mingw-w64
+
+# 验证安装
+x86_64-w64-mingw32-gcc --version
+```
+
+### 2. 使用自动化构建脚本 (推荐)
+
+```bash
+# 进入Windows目录
+cd Windows
+
+# 运行构建脚本
+./build_windows.sh
+```
+
+### 3. 手动构建步骤
+
+如果你想了解构建过程或自定义构建：
+
+```bash
+# 创建构建目录
+mkdir -p build_windows && cd build_windows
+
+# 配置CMake (使用MinGW工具链)
+cmake .. \
+  -DCMAKE_TOOLCHAIN_FILE=../library/borealis/library/lib/extern/SDL/build-scripts/cmake-toolchain-mingw64-x86_64.cmake \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DPLATFORM_DESKTOP=ON
+
+# 编译项目
+make -j$(nproc)
+
+# 复制资源文件
+cp -r ../resources .
+```
+
+### 4. 运行Windows应用
+
+编译成功后，你会得到：
+
+- `borealis_demo.exe` - Windows 64位可执行文件 (约8.1MB)
+- `resources/` - 资源文件目录
+- `start.bat` - Windows启动脚本
+
+### 5. 分发应用
+
+创建分发包：
+
+```bash
+# 创建分发目录
+mkdir -p dist/borealis-demo-windows
+
+# 复制必要文件
+cp borealis_demo.exe dist/borealis-demo-windows/
+cp -r resources dist/borealis-demo-windows/
+cp start.bat dist/borealis-demo-windows/
+
+# 创建压缩包
+zip -r borealis-demo-windows.zip dist/borealis-demo-windows/
+```
+
+### Windows构建故障排除
+
+#### 1. MinGW工具链问题
+```bash
+# 如果找不到编译器
+sudo apt-get install gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64
+
+# 设置默认编译器
+sudo update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 100
+```
+
+#### 2. 链接错误
+如果遇到链接错误，确保使用静态链接：
+```bash
+# 在CMake配置时添加静态链接选项
+cmake .. -DCMAKE_TOOLCHAIN_FILE=... -DCMAKE_EXE_LINKER_FLAGS="-static"
+```
+
+#### 3. 依赖库问题
+项目使用静态链接，包含了所有必要的依赖库，不需要额外的DLL文件。
+
 ## 项目结构
 
 - `demo/` - 演示应用源代码
 - `library/borealis/` - Borealis UI 框架
 - `resources/` - 资源文件（字体、图片等）
 - `build_psv/` - PSV 构建输出目录
+- `Windows/` - Windows构建相关文件
+  - `borealis_demo.exe` - Windows 64位可执行文件
+  - `build_windows.sh` - Windows自动化构建脚本
+  - `start.bat` - Windows启动脚本
+  - `resources/` - Windows版本资源文件
 
 
