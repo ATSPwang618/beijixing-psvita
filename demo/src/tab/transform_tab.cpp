@@ -1,31 +1,54 @@
 /*
-    Copyright 2024 xfangfang
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+    变换效果标签页实现文件 (TransformTab)
+    
+    这个文件实现了一个神奇的2D图形变换实验室！
+    小朋友可以通过拖动滑条来实时看到图片的各种变换效果
+    
+    支持的变换类型：
+    1. 平移 (Translation) - 让图片移动位置
+    2. 缩放 (Scale) - 让图片变大或变小
+    3. 旋转 (Rotation) - 让图片转圈圈
+    4. 倾斜 (Skew) - 让图片倾斜变形
+    5. 尺寸调整 - 改变图片本身的大小
+    
+    还包含动画功能：
+    - 播放按钮：自动播放一段预设的变换动画
+    - 重置按钮：把所有设置恢复到初始状态
+    
+    这就像是一个魔法工作台，每个滑条都是不同的魔法咒语！
+    
+    版权所有 2024 xfangfang
+    使用 Apache 2.0 许可证
 */
 
-#include "tab/transform_tab.hpp"
+#include "tab/transform_tab.hpp"  // 引入变换标签页头文件
 
-#define POINTER_SIZE 20
-#define BOX_SIZE 100
-#define CONTAINER_SIZE 400
-#define ANIMATION 4000
+/*
+ * 常量定义 - 这些是魔法工作台的基本设置
+ * 使用#define定义常量是C++的传统做法，就像给常用的数字起个好记的名字
+ */
+#define POINTER_SIZE 20      // 滑条指针大小（那个可拖动的小圆点）
+#define BOX_SIZE 100         // 变换盒子的基础大小（100像素）
+#define CONTAINER_SIZE 400   // 容器大小（400像素，给变换留出足够空间）
+#define ANIMATION 4000       // 动画持续时间（4000毫秒 = 4秒）
 
+/*
+ * TransformTab 构造函数
+ * 这是变换实验室的初始化过程，设置所有滑条和按钮的行为
+ */
 TransformTab::TransformTab()
 {
-    // Inflate the tab from the XML file
+    /*
+     * 从XML文件加载页面布局
+     * 就像按照设计图纸来布置实验室的各种设备
+     */
     this->inflateFromXMLRes("xml/tabs/transform.xml");
 
+    /*
+     * 配置播放按钮
+     * 当用户点击播放按钮时，会自动播放一段预设的变换动画
+     * 就像按下魔法水晶球，自动展示各种魔法效果
+     */
     play->registerClickAction([this](...)
         {
             aniX.stop();
