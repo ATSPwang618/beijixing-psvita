@@ -101,6 +101,6 @@ vdpm libpng
 
 ## 更多信息
 
-- [VitaSDK 官方文档](https://vitasdk.org/)
-- [Borealis UI 框架](https://github.com/natinusala/borealis)
-- [PlayStation Vita 开发者社区](https://discord.gg/JXEKeg6)
+来自123云盘VIP会员的分享：psv开发
+链   接：https://www.123865.com/s/eAc0jv-4P9AA?pwd=1122
+提取码：1122
