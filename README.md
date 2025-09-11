@@ -115,32 +115,25 @@ vdpm libpng
 - CMake 3.16 或更高版本
 - 至少 1GB 可用磁盘空间
 
-### 1. 安装MinGW-w64工具链
+### 1. 安装MinGW-w64工具链（重要：需要POSIX线程支持）
 
 ```bash
 # 更新包列表
 sudo apt-get update
 
-# 安装MinGW-w64工具链
-sudo apt-get install -y mingw-w64
+# 安装支持POSIX线程的MinGW-w64工具链
+sudo apt-get install -y gcc-mingw-w64-x86-64-posix g++-mingw-w64-x86-64-posix
 
-# 验证安装
+# 设置使用POSIX版本的编译器（重要步骤！）
+sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
+sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+
+# 验证安装（应该显示 "10-posix" 版本）
 x86_64-w64-mingw32-gcc --version
 ```
 
-### 2. 使用自动化构建脚本 (推荐)
 
-```bash
-# 进入Windows目录
-cd Windows
-
-# 运行构建脚本
-./build_windows.sh
-```
-
-### 3. 手动构建步骤
-
-如果你想了解构建过程或自定义构建：
+### 2. 构建步骤
 
 ```bash
 # 创建构建目录
@@ -159,19 +152,34 @@ make -j$(nproc)
 cp -r ../resources .
 ```
 
-### 4. 运行Windows应用
+### 3. 生成的文件
 
-编译成功后，你会得到：
+编译成功后，你会在 `build_windows/` 目录下找到：
 
-- `borealis_demo.exe` - Windows 64位可执行文件 (约8.1MB)
+- `borealis_demo.exe` - Windows 64位可执行文件 (约8.6MB)
 - `resources/` - 资源文件目录
-- `start.bat` - Windows启动脚本
+- `start.bat` - Windows启动脚本（自动生成）
 
-### 5. 分发应用
+### 4. 分发应用
 
 创建分发包：
 
+
 ```bash
+cd build_windows
+```
+
+```bash
+# 创建启动脚本（复制粘贴以下整个代码块到终端）
+cat > start.bat << 'EOF'
+@echo off
+echo Starting Borealis Demo...
+borealis_demo.exe
+pause
+EOF
+
+
+
 # 创建分发目录
 mkdir -p dist/borealis-demo-windows
 
@@ -180,30 +188,55 @@ cp borealis_demo.exe dist/borealis-demo-windows/
 cp -r resources dist/borealis-demo-windows/
 cp start.bat dist/borealis-demo-windows/
 
+# 安装zip工具（如果没有）
+sudo apt-get install -y zip
+
 # 创建压缩包
 zip -r borealis-demo-windows.zip dist/borealis-demo-windows/
 ```
 
+最终分发包包含：
+- `borealis_demo.exe` - 主程序
+- `resources/` - 资源文件
+- `start.bat` - 启动脚本
+- 总大小约 5.3MB（压缩后）
+
 ### Windows构建故障排除
 
-#### 1. MinGW工具链问题
-```bash
-# 如果找不到编译器
-sudo apt-get install gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64
+#### 1. std::mutex 编译错误（常见问题）
+**错误现象**：出现 `'mutex' in namespace 'std' does not name a type` 等错误
 
-# 设置默认编译器
-sudo update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 100
+**解决方案**：
+```bash
+# 问题原因：MinGW默认使用win32线程模型，不支持C++11标准线程库
+# 解决：安装并切换到POSIX线程版本
+
+sudo apt-get install -y gcc-mingw-w64-x86-64-posix g++-mingw-w64-x86-64-posix
+sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
+sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+
+# 验证切换成功（应该显示"10-posix"而不是"10-win32"）
+x86_64-w64-mingw32-gcc --version
+
+# 清理之前的构建缓存
+rm -rf build_windows
+mkdir build_windows && cd build_windows
 ```
 
-#### 2. 链接错误
-如果遇到链接错误，确保使用静态链接：
+#### 2. MinGW工具链问题
 ```bash
-# 在CMake配置时添加静态链接选项
+# 如果编译器不存在
+sudo apt-get install gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64
+
+# 如果出现链接错误，可以尝试静态链接
 cmake .. -DCMAKE_TOOLCHAIN_FILE=... -DCMAKE_EXE_LINKER_FLAGS="-static"
 ```
 
-#### 3. 依赖库问题
-项目使用静态链接，包含了所有必要的依赖库，不需要额外的DLL文件。
+#### 3. 构建注意事项
+- ✅ **必须使用POSIX线程版本的MinGW**：win32版本不支持C++11线程
+- ✅ **CMake会自动检测pthread支持**：配置成功会显示"Found Threads: TRUE"
+- ✅ **项目使用静态链接**：生成的exe不需要额外DLL文件
+- ✅ **支持多核编译**：使用 `make -j$(nproc)` 加速编译
 
 ## 项目结构
 
@@ -212,9 +245,25 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=... -DCMAKE_EXE_LINKER_FLAGS="-static"
 - `resources/` - 资源文件（字体、图片等）
 - `build_psv/` - PSV 构建输出目录
 - `Windows/` - Windows构建相关文件
-  - `borealis_demo.exe` - Windows 64位可执行文件
+  - `borealis_demo.exe` - Windows 64位可执行文件 (8.6MB)
+  - `borealis-demo-windows.zip` - 完整分发包 (5.3MB)
   - `build_windows.sh` - Windows自动化构建脚本
   - `start.bat` - Windows启动脚本
   - `resources/` - Windows版本资源文件
+
+## 构建成功验证
+
+### PSV 版本验证
+```bash
+cd build_psv
+ls -la *.v*  # 应该看到 .velf, .self, .vpk 文件
+```
+
+### Windows 版本验证
+```bash
+cd build_windows
+file borealis_demo.exe  # 应该显示 "PE32+ executable (GUI) x86-64, for MS Windows"
+ls -lh borealis_demo.exe  # 应该约8.6MB
+```
 
 
