@@ -158,48 +158,11 @@ cp -r ../resources .
 
 - `borealis_demo.exe` - Windows 64位可执行文件 (约8.6MB)
 - `resources/` - 资源文件目录
-- `start.bat` - Windows启动脚本（自动生成）
 
-### 4. 分发应用
-
-创建分发包：
-
-
-```bash
-cd build_windows
-```
-
-```bash
-# 创建启动脚本（复制粘贴以下整个代码块到终端）
-cat > start.bat << 'EOF'
-@echo off
-echo Starting Borealis Demo...
-borealis_demo.exe
-pause
-EOF
-
-
-
-# 创建分发目录
-mkdir -p dist/borealis-demo-windows
-
-# 复制必要文件
-cp borealis_demo.exe dist/borealis-demo-windows/
-cp -r resources dist/borealis-demo-windows/
-cp start.bat dist/borealis-demo-windows/
-
-# 安装zip工具（如果没有）
-sudo apt-get install -y zip
-
-# 创建压缩包
-zip -r borealis-demo-windows.zip dist/borealis-demo-windows/
-```
 
 最终分发包包含：
 - `borealis_demo.exe` - 主程序
 - `resources/` - 资源文件
-- `start.bat` - 启动脚本
-- 总大小约 5.3MB（压缩后）
 
 ### Windows构建故障排除
 

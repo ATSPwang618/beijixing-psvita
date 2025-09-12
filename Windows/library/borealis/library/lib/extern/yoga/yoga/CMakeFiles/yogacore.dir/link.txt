@@ -1,2 +1,0 @@
-/usr/bin/x86_64-w64-mingw32-ar qc libyogacore.a CMakeFiles/yogacore.dir/Utils.cpp.obj CMakeFiles/yogacore.dir/YGConfig.cpp.obj CMakeFiles/yogacore.dir/YGEnums.cpp.obj CMakeFiles/yogacore.dir/YGLayout.cpp.obj CMakeFiles/yogacore.dir/YGNode.cpp.obj CMakeFiles/yogacore.dir/YGNodePrint.cpp.obj CMakeFiles/yogacore.dir/YGStyle.cpp.obj CMakeFiles/yogacore.dir/YGValue.cpp.obj CMakeFiles/yogacore.dir/Yoga.cpp.obj CMakeFiles/yogacore.dir/event/event.cpp.obj CMakeFiles/yogacore.dir/log.cpp.obj
-/usr/bin/x86_64-w64-mingw32-ranlib libyogacore.a

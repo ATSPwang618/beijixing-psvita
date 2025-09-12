@@ -66,7 +66,7 @@
                 <brls:Label
                     width="auto"
                     height="auto"
-                    text="@i18n/demo/welcome"
+                    text="这是热门歌曲名单"
                     marginBottom="10px" />
 
                 <!-- 
@@ -79,7 +79,7 @@
                 <brls:Header
                     width="auto"
                     height="auto"
-                    title="HScroll"
+                    title="每日推荐"
                     marginBottom="30px" />
 
                 <!-- 
@@ -186,7 +186,7 @@
                 <brls:Header
                     width="auto"
                     height="auto"
-                    title="@i18n/demo/components/buttons_header"
+                    title="2"
                     marginBottom="30px" />
 
                 <brls:Box

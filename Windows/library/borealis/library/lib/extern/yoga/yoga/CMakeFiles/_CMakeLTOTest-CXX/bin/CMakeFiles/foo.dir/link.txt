@@ -1,2 +1,0 @@
-"/usr/bin/x86_64-w64-mingw32-gcc-ar" cr libfoo.a CMakeFiles/foo.dir/foo.cpp.obj
-"/usr/bin/x86_64-w64-mingw32-gcc-ranlib" libfoo.a

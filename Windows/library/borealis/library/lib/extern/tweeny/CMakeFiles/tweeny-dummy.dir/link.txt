@@ -1,2 +1,0 @@
-/usr/bin/x86_64-w64-mingw32-ar qc libtweeny-dummy.a 
-/usr/bin/x86_64-w64-mingw32-ranlib libtweeny-dummy.a

@@ -27,100 +27,49 @@
     
     <!-- TabFrame是整个标签页系统的容器，就像是一个大书架 -->
     <brls:TabFrame
-        title="@i18n/demo/title"
+        title="网易云音乐"
         icon="@res/img/borealis_96.png">
 
-        <!-- 
-            动态标签页 - 组件展示 
-            这个标签页展示各种UI组件的使用方法
-            ComponentsTab是在C++代码中定义的，提供交互功能
-        -->
-        <brls:Tab label="@i18n/demo/tabs/components" >
-            <ComponentsTab />
+        <!-- 1 -->
+        <brls:Tab label="热门首页" >
+        <ComponentsTab />
         </brls:Tab>
 
-        <!-- 
-            静态标签页 - 布局演示
-            这个标签页展示如何排列界面元素
-            内容直接从另一个XML文件加载，展示XML的模块化设计
-        -->
-        <brls:Tab label="@i18n/demo/tabs/layout" >
-            <brls:View xml="@res/xml/tabs/layout.xml" />
+        <!-- 2 -->
+        <brls:Tab label="私人电台" >
+        <brls:View xml="@res/xml/page-music/电台.xml" />
         </brls:Tab>
 
-        <!-- 
-            变换效果标签页
-            展示2D图形变换：旋转、缩放、倾斜等
-            就像是一个魔法变换工作台
-        -->
-        <brls:Tab label="@i18n/demo/tabs/transform" >
-            <TransformTab />
+        <!-- 3 -->
+        <brls:Tab label="正在播放" >
+        <brls:View xml="@res/xml/page-music/播放页面.xml" />
         </brls:Tab>
-
-        <!-- 
-            文本测试标签页
-            展示文字的各种显示效果和对齐方式
-            就像是一个文字排版实验室
-        -->
-        <brls:Tab label="@i18n/demo/tabs/text" >
-            <TextTestTab />
-        </brls:Tab>
-
-        <!-- 分隔线 - 将标签页分组，让界面更整齐 -->
         <brls:Separator />
 
-        <!-- 
-            滚动测试标签页
-            展示长内容的滚动效果
-            就像是一个很长的卷轴，可以上下滚动查看
-        -->
-        <brls:Tab label="@i18n/demo/tabs/scroll" >
-            <brls:View xml="@res/xml/tabs/scroll_test.xml" />
+        <!-- 4 -->
+        <brls:Tab label="播放歌词" >
+        <brls:View xml="@res/xml/page-music/歌词.xml" />
         </brls:Tab>
 
-        <!-- 
-            宝可梦图鉴标签页
-            展示循环列表的使用，高效显示大量数据
-            就像是一个智能的图书管理系统
-        -->
-        <brls:Tab label="@i18n/demo/tabs/pokedex">
-            <RecyclingListTab />
+        <!-- 5 -->
+        <brls:Tab label="歌曲名单">
+        <!--<brls:View xml="@res/xml/page-music/歌曲名单.xml" /> -->
+        <RecyclingListTab />
         </brls:Tab>
-
-        <!-- 另一个分隔线 -->
         <brls:Separator />
 
-        <!-- 
-            设置标签页
-            展示各种设置组件：开关、输入框、滑条等
-            就像是手机里的"设置"应用
-        -->
-        <brls:Tab label="@i18n/demo/tabs/settings">
-            <SettingsTab />
+        <!-- 6 -->
+        <brls:Tab label="应用设置">
+        <!--<brls:View xml="@res/xml/page-music/设置界面.xml" /> -->
+        <SettingsTab /> 
         </brls:Tab>
 
-        <!-- 
-            以下是被注释掉的标签页
-            在开发过程中，有时会暂时禁用某些功能
-            就像是暂时关闭展示厅的某些房间
-        -->
-        <!--        <brls:Separator />-->
-        <!--        <brls:Tab label="@i18n/demo/tabs/popups" />-->
-        <!--        <brls:Tab label="@i18n/demo/tabs/hos_layout" />-->
-        <!--        <brls:Separator />-->
-        <!--        <brls:Tab label="@i18n/demo/tabs/misc_layouts" />-->
-        <!--        <brls:Tab label="@i18n/demo/tabs/misc_components" />-->
-        <!--        <brls:Tab label="@i18n/demo/tabs/misc_tools" />-->
 
+        
         <brls:Separator />
 
-        <!-- 
-            关于页面 - 内联XML定义
-            这个标签页直接在这里定义内容，而不是引用外部文件
-            展示了程序的信息、版权和致谢
-        -->
-        <brls:Tab label="@i18n/demo/tabs/about" >
-
+        <!-- 7 关于页面 -->
+        <brls:Tab label="关于应用" >
             <!-- 
                 主容器盒子 - 垂直排列所有内容
                 axis="column" 表示子元素垂直排列（从上到下）
@@ -163,7 +112,7 @@
                     <brls:Label
                         width="40%"
                         height="auto"
-                        text="@i18n/demo/about/title"
+                        text="网易云音乐"
                         fontSize="36"
                         horizontalAlign="right"
                         verticalAlign="top" />
@@ -175,17 +124,11 @@
                     <brls:Label
                         width="auto"
                         height="auto"
-                        text="@i18n/demo/about/description"
+                        text="ver1.0.0"
                         marginLeft="@style/about/description_margin" />
 
                 </brls:Box>
 
-                <!-- 
-                    底部信息区域
-                    显示GitHub链接、许可证和Logo致谢
-                    justifyContent="spaceEvenly" 表示子元素均匀分布
-                    就像是把三个物品在盒子里平均摆放
-                -->
                 <brls:Box
                     width="auto"
                     height="auto"
@@ -198,19 +141,19 @@
                     <brls:Label
                         width="auto"
                         height="auto"
-                        text="@i18n/demo/about/github" />
+                        text="发现好音乐" />
 
                     <!-- 许可证信息 -->
                     <brls:Label
                         width="auto"
                         height="auto"
-                        text="@i18n/demo/about/licence" />
+                        text="动心音乐时刻与您相伴" />
 
                     <!-- Logo设计致谢 -->
                     <brls:Label
                         width="auto"
                         height="auto"
-                        text="@i18n/demo/about/logo_credit" />
+                        text="总有一句，唱的是你的心事" />
 
                 </brls:Box>
 
