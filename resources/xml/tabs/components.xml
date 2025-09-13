@@ -1,31 +1,31 @@
 <!-- 
-    组件展示标签页XML布局文件 (components.xml)
+    网易云音乐风格首页 XML 布局文件 (components.xml)
     
-    这个文件是一个完整的UI组件展示厅，包含了Borealis框架的各种组件示例
-    就像是一个互动博物馆，每个区域展示不同类型的UI组件
+    这个文件是网易云音乐风格的主页面，包含了音乐应用的核心功能区域
+    模仿网易云音乐的界面设计和交互体验
     
-    主要展示区域：
-    1. 欢迎区域 - 程序介绍
-    2. HScroll - 水平滚动图片展示
-    3. 按钮区域 - 各种按钮样式和功能
-    4. 滑条区域 - 可拖动的数值调节组件
-    5. 下拉菜单区域 - 选择器组件展示
+    主要功能区域：
+    1. 音乐应用欢迎区域 - 应用介绍和品牌展示
+    2. 每日推荐音乐 - 精选歌曲专辑展示
+    3. 音乐播放控制 - 播放、暂停、切歌等核心功能
+    4. 音量控制 - 音乐播放音量调节
+    5. 音乐分类 - 不同风格音乐类型展示
+    6. 推荐内容 - 热门歌手、新歌推荐等
     
     布局结构：
-    - 外层Box：整个页面的容器
+    - 外层Box：整个音乐首页的容器
     - ScrollingFrame：可滚动的内容区域（支持垂直滚动）
-    - 内层Box：实际内容容器，设置了适当的内边距
+    - 内层Box：实际内容容器，设置了音乐应用适合的内边距
     
-    每个组件都有详细的配置，展示了如何：
-    - 设置组件属性
-    - 响应用户交互
-    - 连接C++代码中的事件处理
-    
-    这就像是一本活的教科书，通过实际可操作的示例来学习UI编程
+    设计理念：
+    - 简洁的音乐播放体验
+    - 快速访问常用功能
+    - 美观的专辑封面展示
+    - 直观的音乐控制界面
 -->
 
 <!-- 
-    主容器 - 整个组件展示页面的根容器
+    主容器 - 整个音乐首页的根容器
     使用自动宽高，让内容决定页面大小
 -->
 <brls:Box
@@ -44,10 +44,10 @@
         grow="1.0" >
 
         <!-- 
-            内容容器 - 实际放置所有展示内容的盒子
+            音乐首页容器 - 实际放置所有音乐功能内容的盒子
             axis="column" 表示内容从上到下垂直排列
-            padding* 属性设置内边距，让内容不会紧贴边缘
-            就像是给展示品周围留出适当的空间，看起来更舒服
+            padding* 属性设置内边距，营造舒适的音乐浏览体验
+            就像是一个精心设计的音乐厅，每个区域都有合适的间隔
         -->
         <brls:Box
             width="auto"
@@ -59,33 +59,33 @@
             paddingBottom="@style/brls/tab_frame/content_padding_top_bottom">
 
                 <!-- 
-                    欢迎标签 - 页面顶部的介绍文字
-                    text属性引用了国际化字符串，支持多语言
-                    marginBottom 在文字下方留出空间
+                    网易云音乐首页欢迎语
+                    营造音乐应用的氛围和品牌感
                 -->
                 <brls:Label
                     width="auto"
                     height="auto"
-                    text="这是热门歌曲名单"
-                    marginBottom="10px" />
+                    text="网易云音乐 - 发现好音乐"
+                    marginBottom="20px" />
 
                 <!-- 
                     ======================
-                    水平滚动展示区域 (HScroll)
+                    每日推荐音乐区域
                     ======================
-                    这个区域展示了水平滚动的图片组件
-                    用户可以左右滑动查看不同的图片
+                    这个区域展示了水平滚动的音乐专辑封面
+                    用户可以左右滑动查看不同的推荐音乐
                 -->
                 <brls:Header
                     width="auto"
                     height="auto"
                     title="每日推荐"
-                    marginBottom="30px" />
+                    subtitle="精选好音乐等你发现"
+                    marginBottom="25px" />
 
                 <!-- 
-                    水平滚动框架 - 可以左右滑动的容器
-                    height="240" 设置固定高度
-                    内部包含多个CaptionedImage组件（带标题的图片）
+                    音乐专辑水平滚动区域
+                    使用beijixing-psvita原生支持的CaptionedImage组件
+                    展示不同风格的音乐专辑封面
                 -->
                 <brls:HScrollingFrame
                     width="auto"
@@ -93,107 +93,111 @@
                     grow="1.0">
 
                     <!-- 
-                        水平排列的图片容器
+                        水平排列的音乐专辑容器
                         axis="row" 表示子元素从左到右水平排列
-                        每个CaptionedImage都是我们之前定义的自定义组件
+                        每个CaptionedImage都是我们之前定义的自定义组件，展示音乐专辑
                     -->
                     <brls:Box
                         width="auto"
                         height="auto"
                         axis="row">
                         
-                        <!-- 第一张展示图片 - 原始图片 -->
+                        <!-- 使用beijixing-psvita原生的CaptionedImage组件展示音乐专辑 -->
                         <CaptionedImage
                             width="auto"
                             height="auto"
                             imageWidth="auto"
                             imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
+                            image="@res/img/borealis_256.png"
+                            caption="流行金曲"
                             paddingRight="6" />
                             
-                        <!-- 第二张展示图片 - 不同缩放类型的图片 -->
                         <CaptionedImage
                             width="auto"
                             height="auto"
                             imageWidth="auto"
                             imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
+                            image="@res/img/borealis_256.png"
+                            caption="经典老歌"
                             paddingRight="6" />
+
                         <CaptionedImage
                             width="auto"
                             height="auto"
                             imageWidth="auto"
                             imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
+                            image="@res/img/borealis_256.png"
+                            caption="摇滚精选"
                             paddingRight="6" />
+
                         <CaptionedImage
                             width="auto"
                             height="auto"
                             imageWidth="auto"
                             imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
+                            image="@res/img/borealis_256.png"
+                            caption="轻音乐"
                             paddingRight="6" />
+
                         <CaptionedImage
                             width="auto"
                             height="auto"
                             imageWidth="auto"
                             imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
-                            paddingRight="6" />
-                        <CaptionedImage
-                            width="auto"
-                            height="auto"
-                            imageWidth="auto"
-                            imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
-                            paddingRight="6" />
-                        <CaptionedImage
-                            width="auto"
-                            height="auto"
-                            imageWidth="auto"
-                            imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
-                            paddingRight="6" />
-                        <CaptionedImage
-                            width="auto"
-                            height="auto"
-                            imageWidth="auto"
-                            imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
-                            paddingRight="6" />
-                        <CaptionedImage
-                            width="auto"
-                            height="auto"
-                            imageWidth="auto"
-                            imageHeight="auto"
-                            image="@res/img/tiles.png"
-                            caption="@i18n/demo/components/images_original"
+                            image="@res/img/borealis_256.png"
+                            caption="民谣精选"
                             paddingRight="6" />
 
                     </brls:Box>
 
                 </brls:HScrollingFrame>
-
-                <!-- Buttons -->
+                <!-- 音乐类型展示 -->
                 <brls:Header
                     width="auto"
                     height="auto"
-                    title="2"
-                    marginBottom="30px" />
+                    title="音乐分类"
+                    subtitle="探索不同风格的音乐"
+                    marginBottom="20px" />
+
+                <brls:Label
+                    width="auto"
+                    height="auto"
+                    text="选择你喜欢的音乐类型，开始音乐之旅"
+                    marginBottom="20px" />
+
+                <!-- 音乐风格选择器 -->
+                <brls:SelectorCell
+                    id="music_genre_selector"
+                    title="音乐风格"
+                    marginBottom="15px" />
+
+                <!-- 音乐年代选择器 -->
+                <brls:SelectorCell
+                    id="music_era_selector"
+                    title="音乐年代"
+                    marginBottom="15px" />
+
+                <!-- 音乐情绪选择器 -->
+                <brls:SelectorCell
+                    id="music_mood_selector"
+                    title="音乐情绪"
+                    marginBottom="25px" />
+
+                <!-- 音乐相关图片展示 -->
+                <brls:Header
+                    width="auto"
+                    height="auto"
+                    title="推荐内容"
+                    subtitle="精选音乐内容为你推荐"
+                    marginBottom="20px" />
 
                 <brls:Box
-                    width="100%"
+                    width="auto"
                     height="auto"
                     axis="row"
-                    marginBottom="30px">
+                    alignItems="center"
+                    justifyContent="spaceEvenly"
+                    marginBottom="25px">
 
                     <brls:Button
                         id="button_primary"
@@ -201,76 +205,85 @@
                         height="auto"
                         style="primary"
                         grow="1.0"
-                        marginRight="30px"
-                        text="@i18n/demo/components/button_primary" />
+                        marginRight="15px"
+                        text="热门歌手" />
+
+                    <brls:Button
+                        id="image_original"
+                        width="auto"
+                        height="auto"
+                        style="primary"
+                        grow="1.0"
+                        marginRight="15px"
+                        text="新歌推荐" />
+
+                    <brls:Button
+                        id="image_upscaled"
+                        width="auto"
+                        height="auto"
+                        style="primary"
+                        grow="1.0"
+                        text="排行榜"
+                        focusDown="image_cropped" />
+
+                </brls:Box>
+
+                <!-- 个人音乐收藏 -->
+                <brls:Box
+                    width="auto"
+                    height="auto"
+                    axis="row"
+                    alignItems="center"
+                    justifyContent="spaceEvenly"
+                    marginBottom="25px">
 
                     <brls:Button
                         id="button_highlight"
                         width="auto"
                         height="auto"
-                        style="highlight"
-                        text="@i18n/demo/components/button_highlight"
-                        focusDown="button_bordered" />
-
-                </brls:Box>
-
-                <brls:Box
-                    width="100%"
-                    height="auto"
-                    axis="row"
-                    marginBottom="30px">
+                        style="primary"
+                        grow="1.0"
+                        marginRight="15px"
+                        text="我的收藏" />
 
                     <brls:Button
-                        width="33%"
-                        height="auto"
-                        marginRight="30px"
-                        text="@i18n/demo/components/button_wrapping" />
-
-                    <brls:Box
+                        id="image_cropped"
                         width="auto"
                         height="auto"
+                        style="primary"
                         grow="1.0"
-                        axis="column">
+                        marginRight="15px"
+                        text="播放列表"
+                        focusUp="image_upscaled" />
 
-                        <brls:Button
-                            id="button_bordered"
-                            width="auto"
-                            height="auto"
-                            padding="10px"
-                            style="bordered"
-                            fontSize="16"
-                            text="@i18n/demo/components/button_bordered"
-                            marginBottom="30px" />
-
-                        <brls:Button
-                            width="auto"
-                            height="auto"
-                            padding="10px"
-                            style="borderless"
-                            fontSize="16"
-                            text="@i18n/demo/components/button_borderless" />
-
-                    </brls:Box>
+                    <brls:Button
+                        id="button_bordered"
+                        width="auto"
+                        height="auto"
+                        style="primary"
+                        grow="1.0"
+                        text="音乐设置" />
 
                 </brls:Box>
-                
-                <!-- Scroll -->
+
+                <!-- 音量控制滑条 -->
                 <brls:Header
                     width="auto"
                     height="auto"
-                    title="@i18n/demo/components/slider_header"
+                    title="音量调节"
                     marginBottom="15px" />
                 
                 <brls:Box
                     width="auto"
                     height="auto"
-                    axis="row">
+                    axis="row"
+                    marginBottom="25px">
                     
                     <brls:Label
                         id="progress"
                         width="80"
                         height="40"
-                        text="100"
+                        text="75"
                         marginBottom="10px"
                         horizontalAlign="center"
                         verticalAlign="center" />
@@ -281,121 +294,6 @@
                         height="40"
                         grow="1"/>
                     
-                </brls:Box>
-
-                <!-- Labels -->
-                <brls:Header
-                    width="auto"
-                    height="auto"
-                    title="@i18n/demo/components/labels_header"
-                    marginBottom="30px" />
-
-                <brls:Label
-                    width="auto"
-                    height="auto"
-                    text="@i18n/demo/components/regular_label"
-                    marginBottom="30px" />
-
-                <brls:Box
-                    width="auto"
-                    height="auto"
-                    axis="row"
-                    justifyContent="spaceEvenly"
-                    marginBottom="30px" >
-
-                    <brls:Label
-                        width="30%"
-                        height="auto"
-                        text="@i18n/demo/components/label_left"
-                        horizontalAlign="left" />
-
-                    <brls:Label
-                        width="30%"
-                        height="auto"
-                        text="@i18n/demo/components/label_center"
-                        horizontalAlign="center" />
-
-                    <brls:Label
-                        width="30%"
-                        height="auto"
-                        text="@i18n/demo/components/label_right"
-                        horizontalAlign="right" />
-
-                </brls:Box>
-
-                <!-- Images -->
-                <brls:Header
-                    width="auto"
-                    height="auto"
-                    title="@i18n/demo/components/images_header_title"
-                    subtitle="@i18n/demo/components/images_header_subtitle"
-                    marginBottom="30px" />
-
-                <brls:Box
-                    width="auto"
-                    height="auto"
-                    axis="row"
-                    alignItems="center"
-                    justifyContent="spaceEvenly"
-                    marginBottom="30px">
-
-                    <CaptionedImage
-                        width="auto"
-                        height="auto"
-                        imageWidth="76px"
-                        imageHeight="76px"
-                        image="@res/img/tiles.png"
-                        caption="@i18n/demo/components/images_downscaled" />
-
-                    <CaptionedImage
-                        id="image_original"
-                        width="auto"
-                        height="auto"
-                        imageWidth="auto"
-                        imageHeight="auto"
-                        image="@res/img/tiles.png"
-                        caption="@i18n/demo/components/images_original" />
-
-                    <CaptionedImage
-                        id="image_upscaled"
-                        width="auto"
-                        height="auto"
-                        imageWidth="170px"
-                        imageHeight="170px"
-                        maxWidth="170px"
-                        image="@res/img/tiles.png"
-                        caption="@i18n/demo/components/images_upscaled"
-                        focusDown="image_cropped" />
-
-                </brls:Box>
-
-                <brls:Box
-                    width="auto"
-                    height="auto"
-                    axis="row"
-                    alignItems="center"
-                    justifyContent="spaceEvenly">
-
-                    <CaptionedImage
-                        width="auto"
-                        height="auto"
-                        imageWidth="400px"
-                        imageHeight="75px"
-                        image="@res/img/tiles.png"
-                        scalingType="stretch"
-                        caption="@i18n/demo/components/images_stretched" />
-
-                    <CaptionedImage
-                        id="image_cropped"
-                        width="auto"
-                        height="auto"
-                        imageWidth="auto"
-                        imageHeight="75px"
-                        image="@res/img/tiles.png"
-                        scalingType="center"
-                        caption="@i18n/demo/components/images_cropped"
-                        focusUp="image_upscaled" />
-
                 </brls:Box>
 
         </brls:Box>

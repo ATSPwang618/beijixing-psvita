@@ -16,11 +16,211 @@
             paddingTop="@style/brls/tab_frame/content_padding_top_bottom"
             paddingBottom="@style/brls/tab_frame/content_padding_top_bottom">
             
+            <!-- 正在播放页面标题 -->
             <brls:Label
                 width="auto"
                 height="auto"
-                text="@i18n/scroll/text"
-                marginBottom="10px" />
+                text="正在播放"
+                fontSize="36"
+                marginBottom="30px" />
+
+            <!-- 当前歌曲信息展示 -->
+            <brls:Header
+                width="auto"
+                height="auto"
+                title="当前歌曲"
+                subtitle="正在为您播放音乐"
+                marginBottom="25px" />
+
+            <!-- 专辑封面和歌曲信息 -->
+            <brls:Box
+                width="auto"
+                height="auto"
+                axis="row"
+                alignItems="center"
+                marginBottom="30px">
+                
+                <!-- 专辑封面 -->
+                <brls:Image
+                    width="120"
+                    height="120"
+                    image="@res/img/borealis_256.png"
+                    marginRight="25px" />
+                
+                <!-- 歌曲信息 -->
+                <brls:Box
+                    width="auto"
+                    height="auto"
+                    axis="column"
+                    grow="1.0">
+                    
+                    <brls:Label
+                        width="auto"
+                        height="auto"
+                        text="歌曲名：夜空中最亮的星"
+                        fontSize="20"
+                        marginBottom="10px" />
+                    
+                    <brls:Label
+                        width="auto"
+                        height="auto"
+                        text="歌手：逃跑计划"
+                        marginBottom="10px" />
+                    
+                    <brls:Label
+                        width="auto"
+                        height="auto"
+                        text="专辑：世界"
+                        marginBottom="10px" />
+                
+                </brls:Box>
+                
+            </brls:Box>
+
+            <!-- 音乐播放控制区域 -->
+            <brls:Header
+                width="auto"
+                height="auto"
+                title="播放控制"
+                subtitle="音乐播放相关功能"
+                marginBottom="20px" />
+
+            <brls:Box
+                width="100%"
+                height="auto"
+                axis="row"
+                marginBottom="25px">
+
+                <brls:Button
+                    width="auto"
+                    height="auto"
+                    style="primary"
+                    grow="1.0"
+                    marginRight="15px"
+                    text="播放音乐" />
+
+                <brls:Button
+                    width="auto"
+                    height="auto"
+                    style="primary"
+                    grow="1.0"
+                    marginRight="15px"
+                    text="暂停播放" />
+
+                <brls:Button
+                    width="auto"
+                    height="auto"
+                    style="primary"
+                    grow="1.0"
+                    text="下一首" />
+
+            </brls:Box>
+
+            <brls:Box
+                width="100%"
+                height="auto"
+                axis="row"
+                marginBottom="25px">
+
+                <brls:Button
+                    width="auto"
+                    height="auto"
+                    style="primary"
+                    grow="1.0"
+                    marginRight="15px"
+                    text="我的歌单" />
+
+                <brls:Box
+                    width="auto"
+                    height="auto"
+                    grow="1.0"
+                    axis="column">
+
+                    <brls:Button
+                        width="auto"
+                        height="auto"
+                        style="primary"
+                        grow="1.0"
+                        text="播放历史"
+                        marginBottom="25px" />
+
+                    <brls:Button
+                        width="auto"
+                        height="auto"
+                        style="primary"
+                        grow="1.0"
+                        text="音乐设置" />
+
+                </brls:Box>
+
+            </brls:Box>
+            
+            <!-- 音量控制滑条 -->
+            <brls:Header
+                width="auto"
+                height="auto"
+                title="音量调节"
+                marginBottom="15px" />
+            
+            <brls:Box
+                width="auto"
+                height="auto"
+                axis="row"
+                marginBottom="25px">
+                
+                <brls:Label
+                    width="80"
+                    height="40"
+                    text="75"
+                    marginBottom="10px"
+                    horizontalAlign="center"
+                    verticalAlign="center" />
+                    
+                <brls:Slider
+                    width="auto"
+                    height="40"
+                    grow="1"/>
+                
+            </brls:Box>
+
+            <!-- 播放模式设置 -->
+            <brls:Header
+                width="auto"
+                height="auto"
+                title="播放模式"
+                marginBottom="20px" />
+
+            <brls:Box
+                width="auto"
+                height="auto"
+                axis="row"
+                alignItems="center"
+                justifyContent="spaceEvenly">
+
+                <brls:Button
+                    width="auto"
+                    height="auto"
+                    style="primary"
+                    grow="1.0"
+                    marginRight="15px"
+                    text="单曲循环" />
+
+                <brls:Button
+                    width="auto"
+                    height="auto"
+                    style="primary"
+                    grow="1.0"
+                    marginRight="15px"
+                    text="列表循环" />
+
+                <brls:Button
+                    width="auto"
+                    height="auto"
+                    style="primary"
+                    grow="1.0"
+                    text="随机播放" />
+
+            </brls:Box>
             
         </brls:Box>
         

@@ -43,8 +43,14 @@ class ComponentsTab : public brls::Box
      * 
      * 格式：BRLS_BIND(组件类型, 变量名, "XML中的ID")
      */
-    BRLS_BIND(brls::Label, progress, "progress");   // 绑定进度文字标签
-    BRLS_BIND(brls::Slider, slider, "slider");      // 绑定滑条组件
+    // 注释掉已删除的组件绑定
+    // BRLS_BIND(brls::Label, progress, "progress");   // 绑定进度文字标签
+    // BRLS_BIND(brls::Slider, slider, "slider");      // 绑定滑条组件
+    
+    // 音乐选择器组件绑定
+    BRLS_BIND(brls::SelectorCell, music_genre_selector, "music_genre_selector");   // 音乐风格选择器
+    BRLS_BIND(brls::SelectorCell, music_era_selector, "music_era_selector");       // 音乐年代选择器
+    BRLS_BIND(brls::SelectorCell, music_mood_selector, "music_mood_selector");     // 音乐情绪选择器
     
     /*
      * 按钮点击事件处理函数声明

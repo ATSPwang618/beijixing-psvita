@@ -30,46 +30,68 @@ ComponentsTab::ComponentsTab()
     this->inflateFromXMLRes("xml/tabs/components.xml");
 
     /*
-     * 绑定按钮点击事件 - 方法1：使用宏
-     * BRLS_REGISTER_CLICK_BY_ID 是一个便捷的宏
-     * 它的作用是："当ID为button_primary的按钮被点击时，调用onPrimaryButtonClicked方法"
-     * 
-     * 参数说明：
-     * "button_primary" - 按钮的ID，就像人的身份证号一样用来识别
-     * this->onPrimaryButtonClicked - 点击时要执行的函数
+     * 注释掉已删除的播放控制按钮引用
+     * 这些功能已经转移到其他页面
      */
-    BRLS_REGISTER_CLICK_BY_ID("button_primary", this->onPrimaryButtonClicked);
+    // BRLS_REGISTER_CLICK_BY_ID("button_primary", this->onPrimaryButtonClicked);
 
     /*
-     * 绑定按钮点击事件 - 方法2：直接获取按钮对象
-     * 这种方法更灵活，可以设置更多参数
+     * 注释掉已删除的高亮按钮引用
      */
-    // 根据ID获取高亮按钮的引用，就像通过门牌号找到房子
-    brls::Button* highlightButton = (brls::Button*)this->getView("button_highlight");
-    
-    // 为按钮注册一个动作，参数说明：
-    // "Honk" - 动作的名称(随便起的名字)
-    // brls::BUTTON_A - 触发条件：按A键  
-    // [](brls::View* view) { return true; } - 点击时执行的代码(这里只是返回true)
-    // false - 是否重复触发
-    // false - 是否需要按住
-    // brls::SOUND_HONK - 播放的音效：喇叭声
-    highlightButton->registerAction(
-        "Honk", brls::BUTTON_A, [](brls::View* view) { return true; }, false, false, brls::SOUND_HONK);
+    // brls::Button* highlightButton = (brls::Button*)this->getView("button_highlight");
+    // highlightButton->registerAction(
+    //     "Honk", brls::BUTTON_A, [](brls::View* view) { return true; }, false, false, brls::SOUND_HONK);
 
     /*
-     * 连接滑条和进度文字显示
-     * 当用户拖动滑条时，数字会实时更新
+     * 注释掉已删除的滑条和进度显示相关代码
+     * 音量控制功能已经转移到其他页面
      */
-    // 设置进度文字的初始值：滑条当前进度×100，转换为百分比
-    progress->setText(std::to_string((int)(slider->getProgress() * 100)));
-    
-    // 监听滑条进度变化事件
-    // 每当滑条被拖动时，这个函数就会被调用
-    slider->getProgressEvent()->subscribe([this](float progress) {
-        // 更新进度文字显示：进度值×100，显示为百分比
-        this->progress->setText(std::to_string((int)(progress * 100)));
-    });
+    // progress->setText(std::to_string((int)(slider->getProgress() * 100)));
+    // slider->getProgressEvent()->subscribe([this](float progress) {
+    //     this->progress->setText(std::to_string((int)(progress * 100)));
+    // });
+
+    /*
+     * 初始化音乐风格选择器
+     * 让用户选择喜欢的音乐类型
+     */
+    music_genre_selector->init("音乐风格",
+                              {"流行", "摇滚", "古典", "民谣", "电子", "爵士", "说唱", "乡村"},
+                              0,
+                              [](int selected) {},
+                              [](int selected) {
+                                  auto dialog = new brls::Dialog(fmt::format("选择了音乐风格: {}", selected));
+                                  dialog->addButton("确定", []() {});
+                                  dialog->open();
+                              });
+
+    /*
+     * 初始化音乐年代选择器
+     * 让用户选择喜欢的音乐年代
+     */
+    music_era_selector->init("音乐年代",
+                            {"2020年代", "2010年代", "2000年代", "90年代", "80年代", "70年代", "经典老歌"},
+                            0,
+                            [](int selected) {},
+                            [](int selected) {
+                                auto dialog = new brls::Dialog(fmt::format("选择了音乐年代: {}", selected));
+                                dialog->addButton("确定", []() {});
+                                dialog->open();
+                            });
+
+    /*
+     * 初始化音乐情绪选择器
+     * 让用户选择想要的音乐氛围
+     */
+    music_mood_selector->init("音乐情绪",
+                             {"快乐", "放松", "激动", "浪漫", "忧伤", "专注", "怀旧", "励志"},
+                             0,
+                             [](int selected) {},
+                             [](int selected) {
+                                 auto dialog = new brls::Dialog(fmt::format("选择了音乐情绪: {}", selected));
+                                 dialog->addButton("确定", []() {});
+                                 dialog->open();
+                             });
 }
 
 // 全局变量：记录当前选中的选项索引

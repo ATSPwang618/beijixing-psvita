@@ -37,38 +37,41 @@
 
         <!-- 2 -->
         <brls:Tab label="私人电台" >
-        <brls:View xml="@res/xml/page-music/电台.xml" />
+        <TransformTab />
         </brls:Tab>
+        <brls:Separator />
 
         <!-- 3 -->
         <brls:Tab label="正在播放" >
         <brls:View xml="@res/xml/page-music/播放页面.xml" />
         </brls:Tab>
-        <brls:Separator />
+        
 
         <!-- 4 -->
-        <brls:Tab label="播放歌词" >
-        <brls:View xml="@res/xml/page-music/歌词.xml" />
-        </brls:Tab>
-
-        <!-- 5 -->
         <brls:Tab label="歌曲名单">
-        <!--<brls:View xml="@res/xml/page-music/歌曲名单.xml" /> -->
         <RecyclingListTab />
         </brls:Tab>
         <brls:Separator />
 
+        <!-- 5 -->
+        <brls:Tab label="播放歌词" >
+        <brls:View xml="@res/xml/page-music/歌词.xml" />
+        </brls:Tab>
+
         <!-- 6 -->
+        <brls:Tab label="个人中心" >
+        <brls:View xml="@res/xml/page-music/个人中心.xml" />
+        </brls:Tab>
+        <brls:Separator />
+        
+        <!-- 7 -->
         <brls:Tab label="应用设置">
         <!--<brls:View xml="@res/xml/page-music/设置界面.xml" /> -->
         <SettingsTab /> 
         </brls:Tab>
-
-
         
-        <brls:Separator />
 
-        <!-- 7 关于页面 -->
+        <!-- 8 关于页面 -->
         <brls:Tab label="关于应用" >
             <!-- 
                 主容器盒子 - 垂直排列所有内容
